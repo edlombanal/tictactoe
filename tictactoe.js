@@ -46,3 +46,31 @@ function singleRound(player,comp){
     }
 }
 
+function game(){
+    console.log("Welcome to tic tac toe! Get ready for a 5 round game of tic tac toe!");
+    let player;
+    let comp;
+    let result;
+    let playerScore = 0;
+    for (let i = 0; i < 4; i++) {
+        console.log("Round "+(i+1)+", enter your weapon:")
+        player = prompt();
+        comp = computerPlay();
+        console.log(capitalize(player)+" vs "+comp)
+        result = singleRound(player,comp);
+        console.log(result);
+        if(result.search("win!")!=-1){
+            playerScore++;
+        }
+    }
+    console.log("Final Score:");
+    console.log("Player: "+playerScore);
+    console.log("Computer: "+(5-playerScore));
+    if(playerScore>2){
+        console.log("You won!!!");
+    } else {
+        console.log("You lost...")
+    }
+}
+
+game();
