@@ -52,8 +52,10 @@ function game(){
     let comp;
     let result;
     let playerScore = 0;
-    for (let i = 0; i < 4; i++) {
-        console.log("Round "+(i+1)+", enter your weapon:")
+    let pcScore = 0;
+    let ties = 0;
+    for (let i = 1; i <= 5; i++) {
+        console.log("Round "+(i)+", enter your weapon:")
         player = prompt();
         comp = computerPlay();
         console.log(capitalize(player)+" vs "+comp)
@@ -61,16 +63,21 @@ function game(){
         console.log(result);
         if(result.search("win!")!=-1){
             playerScore++;
+        }else if(result.search("Tie")!=-1){
+            ties++;
         }
     }
+    pcScore = 5-playerScore-ties;
     console.log("Final Score:");
     console.log("Player: "+playerScore);
-    console.log("Computer: "+(5-playerScore));
-    if(playerScore>2){
+    console.log("Computer: "+(pcScore));
+    if(playerScore>pcScore){
         console.log("You won!!!");
+    } else if(pcScore==playerScore){
+        console.log("You tied.");
     } else {
-        console.log("You lost...")
-    }
+        console.log("You lost...");
+    };
 }
 
 game();
