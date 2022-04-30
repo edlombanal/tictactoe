@@ -47,7 +47,7 @@ function singleRound(player,comp){
 }
 
 function game(){
-    console.log("Welcome to tic tac toe! Get ready for a 5 round game of tic tac toe!");
+    console.log("Welcome to Rock Paper Scissors! Get ready for a 5 round game of Rock Paper Scissors!");
     let player;
     let comp;
     let result;
@@ -57,7 +57,7 @@ function game(){
         player = prompt();
         comp = computerPlay();
         console.log(capitalize(player)+" vs "+comp)
-        result = singleRound(player,comp);
+        result = singleRound(capitalize(player),comp);
         console.log(result);
         if(result.search("win!")!=-1){
             playerScore++;
