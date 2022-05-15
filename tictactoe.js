@@ -1,83 +1,106 @@
-let hand = ["Rock","Paper","Scissors"];
-
 function computerPlay(){
     let randNum = Math.floor(Math.random()*3);
     return hand[randNum];
 }
 
-function capitalize(word){
-    let str = word;
-    str = str.toLowerCase();
-    str = str.charAt(0).toUpperCase() + str.slice(1);
-    return str;
-}
-
-
 function singleRound(player,comp){
-    let play = capitalize(player);
-    console.log("Player chooses "+play);
-    console.log("Computer chooses "+comp);
-    if(play === comp){
-        return "Tie!";
+    if(player === comp){
+        return 0;
     } else {
-        switch(play){
-            case 'Rock':
-                if(comp === "Paper"){
-                    return "You lose! Paper beats Rock!"
+        switch(player){
+            case 'rock':
+                if(comp === "paper"){
+                    return 2;
                 } else {
-                    return "You win! Rock beats Scissors!"
+                    return 1;
                 }
                 break;
-            case 'Paper':
-                if(comp === "Scissors"){
-                    return "You lose! Scissors beats Paper!"
+            case 'paper':
+                if(comp === "scissors"){
+                    return 2;
                 } else {
-                    return "You win! Paper beats Rock!"
+                    return 1;
                 }
                 break;
-            case 'Scissors':
-                if(comp === "Rock"){
-                    return "You lose! Rock beats Scissors!"
+            case 'scissors':
+                if(comp === "rock"){
+                    return 2;
                 } else {
-                    return "You win! Scissors beats Paper!"
+                    return 1;
                 }
                 break;
         }
     }
 }
 
-function game(){
-    console.log("Welcome to Rock Paper Scissors! Get ready for a 5 round game of Rock Paper Scissors!");
-    let player;
-    let comp;
-    let result;
-    let playerScore = 0;
-    let pcScore = 0;
-    let ties = 0;
-    for (let i = 1; i <= 5; i++) {
-        console.log("Round "+(i)+", enter your weapon:")
-        player = prompt();
-        comp = computerPlay();
-        console.log(capitalize(player)+" vs "+comp)
-        result = singleRound(capitalize(player),comp);
-        console.log(result);
-        if(result.search("win!")!=-1){
-            playerScore++;
-        }else if(result.search("Tie")!=-1){
-            ties++;
+// game
+
+let result;
+let playerScore = 0;
+let pcScore = 0;
+let ties = 0;
+let handSelected = 'n';
+let pcHand = 'n';
+let hand = ["rock","paper","scissors"];
+
+// event listeners
+
+console.log('hello');
+
+const imgs = document.querySelectorAll('.pb');
+const cimgs = document.querySelectorAll('.cb');
+const play = document.querySelector('.play');
+const resultMsg = document.querySelector('#winner');
+const ps = document.querySelector('#ps');
+const cs = document.querySelector('#cs');
+
+imgs.forEach(i => {
+    i.addEventListener('click',function(){
+        if(i.classList.contains('activeimg')){
+            i.classList.remove('activeimg');
+            handSelected = 'n';
+        }else{
+            imgs.forEach(e => {
+                e.classList.remove('activeimg');
+            })
+        i.classList.add('activeimg')
+        handSelected = i.id;
+        console.log(handSelected);
         }
-    }
-    pcScore = 5-playerScore-ties;
-    console.log("Final Score:");
-    console.log("Player: "+playerScore);
-    console.log("Computer: "+(pcScore));
-    if(playerScore>pcScore){
-        console.log("You won!!!");
-    } else if(pcScore==playerScore){
-        console.log("You tied.");
-    } else {
-        console.log("You lost...");
+        cimgs.forEach(e => {
+            e.classList.remove('activeimg');
+        });
+    });
+});
+
+play.addEventListener('click',() => {
+    if(handSelected!=='n'){
+        pcHand = computerPlay();   
+        cimgs.forEach(i => {
+            if(i.id==pcHand){
+                i.classList.add('activeimg');
+            }
+        });
+        result = singleRound(handSelected,pcHand);
+        switch(result){
+            case 0:
+                //tie
+                resultMsg.textContent = "It's a tie!";
+                break;
+            case 1:
+                //player
+                resultMsg.textContent = "You won!";
+                playerScore++;
+                break;
+            case 2:
+                //computer
+                resultMsg.textContent = "You lost...";
+                pcScore++;
+                break;
+        }
+    }else{
+        alert('Pick a hand!');
     };
-}
-
-game();
+    cs.textContent = pcScore;
+    ps.textContent = playerScore;
+});
