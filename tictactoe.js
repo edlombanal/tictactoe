@@ -53,6 +53,9 @@ const play = document.querySelector('.play');
 const resultMsg = document.querySelector('#winner');
 const ps = document.querySelector('#ps');
 const cs = document.querySelector('#cs');
+const overlay = document.querySelector('.overlay');
+const decision = document.querySelector('#decision');
+const playagain = document.querySelector('playagain');
 
 imgs.forEach(i => {
     i.addEventListener('click',function(){
@@ -74,6 +77,9 @@ imgs.forEach(i => {
 });
 
 play.addEventListener('click',() => {
+    cimgs.forEach(e => {
+        e.classList.remove('activeimg');
+    });
     if(handSelected!=='n'){
         pcHand = computerPlay();   
         cimgs.forEach(i => {
@@ -103,4 +109,25 @@ play.addEventListener('click',() => {
     };
     cs.textContent = pcScore;
     ps.textContent = playerScore;
+    if(pcScore===5){
+        decision.textContent = "You lost... "
+        overlay.style.display = 'flex'
+    }
+    if(playerScore===5){
+        decision.textContent = "You won! "
+        overlay.style.display = 'flex'
+    }
+});
+
+playagain.addEventListener('click', () => {
+    cimgs.forEach(e => {
+        e.classList.remove('activeimg');
+    });
+    imgs.forEach(e => {
+        e.classList.remove('activeimg');
+    });
+    playerScore=0;
+    pcScore=0;
+    resultMsg.textContent = "Pick a hand, then click play.";
+    overlay.style.display = 'none';
 });

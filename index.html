@@ -15,23 +15,9 @@
     <body>
         <div class="header">
             <div class="title">Rock Paper Scissors!</div>
-            <div class="subtitle">Enjoy a simple game of rock, paper, scissors on demand.</div>
+            <div class="subtitle">Enjoy a simple game of rock, paper, scissors to five points, on demand.</div>
         </div>
         <div class="content">
-            <div class="sidebar">
-                <div class="scorebox">
-                    <div class="scoreTitle">Score:</div>
-                    <div class="score" id="player">Player: <span id="ps">0</span></div>
-                    <div class="score" id="comp">Computer: <span id="cs">0</span></div>
-                </div>
-                <div class="plays">
-                    <div class="playsbox">
-                        <div class="scoreTitle">Plays:</div>
-                        <div class="playCard">
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="game">
                 <div class="player buttons">
                     <div class="scoreTitle">Choose your hand:</div>
@@ -40,7 +26,12 @@
                     <img src="./images/scissors.png" alt="Scissors!" id="scissors" class="pb">
                 </div>
                 <div class="match buttons">
-                    <button class="play">Click to play!</button>
+                    <div class="scorebox">
+                        <div class="scoreTitle">Score:</div>
+                        <div class="score" id="player">Player: <span id="ps">0</span></div>
+                        <div class="score" id="comp">Computer: <span id="cs">0</span></div>
+                    </div>
+                    <button class="play">Play!</button>
                     <div class="versus">
                         <div id="winner">Pick a hand, then click play.</div>
                     </div>
@@ -51,6 +42,12 @@
                     <img src="./images/paper.png" alt="Paper!" id="paper" class="cb">
                     <img src="./images/scissors.png" alt="Scissors!" id="scissors" class="cb">
                 </div>
+            </div>
+        </div>
+
+        <div class="overlay">
+            <div class="msgBox">
+                <div id="finalmsg"><div id="decision"> </div><span id="playagain">Click me</span> to play again!</div>
             </div>
         </div>
 
