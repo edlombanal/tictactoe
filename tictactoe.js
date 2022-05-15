@@ -55,7 +55,7 @@ const ps = document.querySelector('#ps');
 const cs = document.querySelector('#cs');
 const overlay = document.querySelector('.overlay');
 const decision = document.querySelector('#decision');
-const playagain = document.querySelector('playagain');
+const playagain = document.querySelector('#playagain');
 
 imgs.forEach(i => {
     i.addEventListener('click',function(){
@@ -128,6 +128,8 @@ playagain.addEventListener('click', () => {
     });
     playerScore=0;
     pcScore=0;
+    cs.textContent = pcScore;
+    ps.textContent = playerScore;
     resultMsg.textContent = "Pick a hand, then click play.";
     overlay.style.display = 'none';
 });
