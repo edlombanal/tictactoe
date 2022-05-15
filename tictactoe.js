@@ -45,8 +45,6 @@ let hand = ["rock","paper","scissors"];
 
 // event listeners
 
-console.log('hello');
-
 const imgs = document.querySelectorAll('.pb');
 const cimgs = document.querySelectorAll('.cb');
 const play = document.querySelector('.play');
